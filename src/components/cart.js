@@ -5,7 +5,8 @@
 import React from "react";
 // import PriceCounter from "./PriceCounter";
 
-const Cart = () => {
+const Cart = ({transaction}) => {
+ console.log(transaction);
   return (
     <>
       <div class="container mt-3">
@@ -13,16 +14,28 @@ const Cart = () => {
           <div class="col-md-8">
             <div class="card bg-light mb-3">
               <div class="card-body">
-                <h5 class="card-title">Left Card Title</h5>
-                <p class="card-text">This is the content for the left card.</p>
+                <h5 class="card-title">Your shopping cart</h5>
+                <p class="card-text">You have 7 total items.</p>
+                <hr className="mx-auto"/>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <img src="" alt="Product Image" class="img-fluid"/>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>Product</h5>
+                  </div>
+                  <div class="col-sm-4">
+                    <h5>item_id</h5>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
             <div class="card bg-light mb-3">
               <div class="card-body">
-                <h5 class="card-title">Right Card Title</h5>
-                <p class="card-text">This is the content for the right card.</p>
+                <h5 class="card-title">Your cart</h5>
+                <p class="card-text"></p>
               </div>
             </div>
           </div>
