@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/ProductCard.css";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const Transactions = () => {
+const Home = () => {
   const [responseData1, setResponseData1] = useState([]);
   const [responseData2, setResponseData2] = useState([]);
   const [responseData3, setResponseData3] = useState([]);
@@ -14,7 +13,7 @@ const Transactions = () => {
   const RedirectToCart = (product) => {
     setCartItems((prevCartItems) => {
       const itemExists = prevCartItems.find(
-        (item) => item.itemId === product.itemId
+        (item) => item.item_id === product.item_id
       );
       if (itemExists) {
         return prevCartItems; // Return the previous cart items array
@@ -23,7 +22,6 @@ const Transactions = () => {
       }
     });
     console.log(cartItems);
-    //storing the fetched data into LocalStorage.
     localStorage.setItem("items", JSON.stringify(cartItems));
   };
 
@@ -37,7 +35,6 @@ const Transactions = () => {
           "Content-Type": "application/json",
         },
         withCredentials: true,
-        data: { email: "0@gmail.com" },
       };
       let config2 = {
         method: "post",
@@ -58,16 +55,18 @@ const Transactions = () => {
           "Content-Type": "application/json",
         },
         withCredentials: true,
-        data: { email: "0@gmail.com" },
       };
 
       try {
         const response1 = await axios.request(config);
         setResponseData1(response1.data);
+        console.log(response1.data);
         const response2 = await axios.request(config2);
         setResponseData2(response2.data);
+        console.log(response2.data);
         const response3 = await axios.request(config3);
         setResponseData3(response3.data);
+        console.log(response3.data);
       } catch (error) {
         console.log(error);
       }
@@ -87,30 +86,35 @@ const Transactions = () => {
         spaceBetween={0}
         slidesPerView={3}
         onSlideChange={() => {}}
-        onSwiper={(swiper) => {}}
+        onSwiper={() => {}}
       >
-        <div class="boxcont">
+        <div className="boxcont">
           {responseData1.map((transaction) => (
-            <div key={transaction.transaction_id} class="">
+            <div key={transaction.transaction_id} className="">
               <SwiperSlide>
-                <div class="product-card mb-2">
+                <div className="product-card mb-2 mx-lg-5 mx-md-5">
                   <div
-                    class="product-image"
+                    className="product-image"
                     style={{
-                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.itemId
+                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.item_id
                         .toString()
                         .substr(0, 2)}/0${
-                        transaction.itemId
+                        transaction.item_id
                       }.jpg?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-06-30T19:27:18Z&st=2023-04-09T11:27:18Z&spr=https&sig=wPAoF6tCS%2BoowdD8ztwOMKiE%2BpRU6vAxCKM3ZuerB1Y%3D`,
                     }}
                   ></div>
-                  <div class="product-price">
+                  <div className="product-price">
                     Item Price:{transaction.price}
                   </div>
-                  <div class="product-description">
+                  <div className="product-description">
                     Item Description: This is pro
                   </div>
-                  <button class="add-to-cart-button">Add to Cart</button>
+                  <button
+                    className="add-to-cart-button"
+                    onClick={() => RedirectToCart(transaction)}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </SwiperSlide>
             </div>
@@ -126,28 +130,33 @@ const Transactions = () => {
         onSlideChange={() => {}}
         onSwiper={() => {}}
       >
-        <div class="boxcont">
+        <div className="boxcont">
           {responseData2.map((transaction) => (
-            <div key={transaction.transaction_id} class="">
+            <div key={transaction.transaction_id} className="">
               <SwiperSlide>
-                <div class="product-card mb-2">
+                <div className="product-card mb-2 mx-lg-5 mx-md-5">
                   <div
-                    class="product-image"
+                    className="product-image"
                     style={{
-                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.itemId
+                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.item_id
                         .toString()
                         .substr(0, 2)}/0${
-                        transaction.itemId
+                        transaction.item_id
                       }.jpg?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-06-30T19:27:18Z&st=2023-04-09T11:27:18Z&spr=https&sig=wPAoF6tCS%2BoowdD8ztwOMKiE%2BpRU6vAxCKM3ZuerB1Y%3D`,
                     }}
                   ></div>
-                  <div class="product-price">
+                  <div className="product-price">
                     Item Price:{transaction.price}
                   </div>
-                  <div class="product-description">
+                  <div className="product-description">
                     Item Description: This is pro
                   </div>
-                  <button class="add-to-cart-button">Add to Cart</button>
+                  <button
+                    className="add-to-cart-button"
+                    onClick={() => RedirectToCart(transaction)}
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </SwiperSlide>
             </div>
@@ -165,29 +174,29 @@ const Transactions = () => {
         onSlideChange={() => {}}
         onSwiper={() => {}}
       >
-        <div class="boxcont">
+        <div className="boxcont">
           {responseData3.map((transaction) => (
-            <div key={transaction.transaction_id} class="">
+            <div key={transaction.item_id} className="">
               <SwiperSlide>
-                <div class="product-card mb-2">
+                <div className="product-card  mb-2 mx-lg-5 mx-md-5">
                   <div
-                    class="product-image"
+                    className="product-image"
                     style={{
-                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.itemId
+                      backgroundImage: `url(https://frsstoragepavnhe.file.core.windows.net/frs/images/0${transaction.item_id
                         .toString()
                         .substr(0, 2)}/0${
-                        transaction.itemId
+                        transaction.item_id
                       }.jpg?sv=2021-12-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2023-06-30T19:27:18Z&st=2023-04-09T11:27:18Z&spr=https&sig=wPAoF6tCS%2BoowdD8ztwOMKiE%2BpRU6vAxCKM3ZuerB1Y%3D`,
                     }}
                   ></div>
-                  <div class="product-price">
+                  <div className="product-price">
                     Item Price: {transaction.price}
                   </div>
-                  <div class="product-description">
+                  <div className="product-description">
                     Item Description: This is pro
                   </div>
                   <button
-                    class="add-to-cart-button"
+                    className="add-to-cart-button"
                     onClick={() => RedirectToCart(transaction)}
                   >
                     Add to Cart
@@ -202,4 +211,4 @@ const Transactions = () => {
   );
 };
 
-export default Transactions;
+export default Home;

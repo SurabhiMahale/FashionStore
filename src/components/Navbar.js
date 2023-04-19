@@ -1,4 +1,14 @@
+import useLocalStorageState from "use-local-storage-state";
+import { INITIAL_LOGIN_STATUS } from "../constants";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+  const [loginStatus, setLoginStatus] = useLocalStorageState("loginStatus", {
+    defaultValue: INITIAL_LOGIN_STATUS,
+  });
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
@@ -48,17 +58,41 @@ const Navbar = () => {
           </ul>
 
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Sign In
-              </a>
-            </li>
+            {loginStatus !== null && loginStatus.status === "success" ? (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/cart">
+                    Cart
+                  </Link>
+                </li>
 
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Sign up
-              </a>
-            </li>
+                <li className="nav-item">
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => {
+                      setLoginStatus(null);
+                      navigate("/login", { replace: true });
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Sign In
+                  </a>
+                </li>
+
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    Sign up
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

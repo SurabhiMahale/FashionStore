@@ -1,15 +1,34 @@
 import React from "react";
-import { RouterProvider } from "react-router-dom";
-import router from "./routes/routes";
-import Navbar from "./components/Navbar";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "../src/components/Navbar";
+import LoginProvider from "./context/loginContext";
+import Login from "../src/components/login";
+import UserInfo from "../src/components/userInfo";
+import Home from "../src/components/Home";
+import NotFound from "../src/components/NotFound";
+import Cart from "../src/components/cart";
+import Transactions from "../src/components/transactions";
+import Register from "../src/components/Register";
+import CartProvider from "./context/cartContext";
 function App() {
   return (
-    <>
-      <Navbar />
+    <BrowserRouter>
+      <CartProvider>
+        <LoginProvider>
+          <Navbar />
 
-      <RouterProvider router={router} />
-    </>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/userinfo" element={<UserInfo />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LoginProvider>
+      </CartProvider>
+    </BrowserRouter>
   );
 }
 

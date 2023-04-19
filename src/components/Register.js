@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -107,7 +108,7 @@ const Register = () => {
                         id="confirmPassword"
                         placeholder="Enter the Confirm Password"
                         value={confirmPassword}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                       />
                     </div>
                   </div>
@@ -135,7 +136,7 @@ const Register = () => {
                   <div className="mt-3 mb-3">
                     <div className="form-group">
                       <button className="form-control btn btn-success text-center">
-                        Sign Up 
+                        Sign Up
                       </button>
                     </div>
                   </div>
