@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
+import axios from "axios";
 import { Button } from "@mui/material";
 import shop from "../assets/shopping.svg";
-
+import "../../src/css/userinfo.css";
+import {useNavigate} from "react-router-dom";
 function UserInfo() {
   const [info, setInfo] = useState({
     name: "",
-    club_member_status: "",
-    fashion_news_frequency: "",
+    club_member_status: "Regularly",
     age: "",
-    postalcode: "",
-    password: "",
+    postal_code: "",
   });
 
   const inputEvent = (event) => {
@@ -21,36 +21,41 @@ function UserInfo() {
       return { ...prev, [name]: value };
     });
   };
-
+  const navigate = useNavigate();
   const onSubmits = (event) => {
     event.preventDefault();
-    const axios = require("axios");
 
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://127.0.0.1:8000/users/info",
+      url: "http://myproject.local:8000/users/info/edit",
       headers: {
         "Content-Type": "application/json",
       },
-      data: info,
+      withCredentials: true,
+      data: JSON.stringify(info),
     };
-
-    axios
-      .request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch((error) => {
+     
+    const SubmitData = async () =>{
+      try {
+        const response = await axios.request(config);
+        if (response.data.status === "success") {
+          navigate("/home", { replace: true });
+        }
+      } catch (error) {
         console.log(error);
-      });
+      }
+    }
+    SubmitData();
+    
+    
   };
 
   return (
     <div className="p-10">
       <div className="container">
         <div className="left">
-          <label className="Projecttitle">Sign up</label>
+          <label className="Projecttitle">USER INFO</label>
           <img src={shop} className="shop" alt="shoplogo" />
         </div>
         <div className="right">
@@ -71,18 +76,7 @@ function UserInfo() {
 
             <br />
 
-            <div>
-              {/* USERNAME */}
-              <label className="Name">Username: </label>
-              <TextField
-                className="inputbox mt-11"
-                onChange={inputEvent}
-                id="Name"
-                name="username"
-                variant="outlined"
-                autoComplete="off"
-              />
-            </div>
+            
 
             <div className="container1">
               <div className="right1">
@@ -91,7 +85,7 @@ function UserInfo() {
                 <br />
 
                 <TextField
-                  type="number"
+                  type="text"
                   className="inputbox1"
                   value={info.regno}
                   onChange={inputEvent}
@@ -108,12 +102,12 @@ function UserInfo() {
                 <br />
 
                 <TextField
-                  type="number"
+                  type="text"
                   className="inputbox1"
-                  value={info.regno}
+                  value={info.postal_code}
                   onChange={inputEvent}
                   id="postalcode"
-                  name="postalcode"
+                  name="postal_code"
                   variant="outlined"
                   autoComplete="off"
                 />
@@ -121,19 +115,7 @@ function UserInfo() {
             </div>
             <br />
 
-            <div>
-              {/* Password */}
-              <label className="Name">Password: </label>
-              <TextField
-                className="inputbox"
-                input-type="number"
-                onChange={inputEvent}
-                id="password"
-                name="password"
-                variant="outlined"
-                autoComplete="off"
-              />
-            </div>
+           
 
             <div className="container2radio">
               <div className="radio">
