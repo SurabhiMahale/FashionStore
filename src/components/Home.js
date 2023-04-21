@@ -9,6 +9,8 @@ const Home = () => {
   const [responseData2, setResponseData2] = useState([]);
   const [responseData3, setResponseData3] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  let isResSet = false;
+
 
   const RedirectToCart = (product) => {
     setCartItems((prevCartItems) => {
@@ -18,7 +20,8 @@ const Home = () => {
       if (itemExists) {
         return prevCartItems; // Return the previous cart items array
       } else {
-        return [...prevCartItems, product]; // Return a new array with the new product added
+        alert(`${itemExists.item_id} is successfully added to the cart`);
+        return [...prevCartItems,product]; // Return a new array with the new product added
       }
     });
     console.log(cartItems);
@@ -43,8 +46,7 @@ const Home = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true,
-        data: { email: "0@gmail.com" },
+        withCredentials: true
       };
 
       let config3 = {
@@ -65,7 +67,11 @@ const Home = () => {
         setResponseData2(response2.data);
         console.log(response2.data);
         const response3 = await axios.request(config3);
-        setResponseData3(response3.data);
+        if (response3.data !== "None") {
+          isResSet = true
+          setResponseData3(response3.data);
+        }
+        
         console.log(response3.data);
       } catch (error) {
         console.log(error);
@@ -175,7 +181,7 @@ const Home = () => {
         onSwiper={() => {}}
       >
         <div className="boxcont">
-          {responseData3.map((transaction) => (
+          { responseData3.map((transaction) => (
             <div key={transaction.item_id} className="">
               <SwiperSlide>
                 <div className="product-card  mb-2 mx-lg-5 mx-md-5">
@@ -205,6 +211,8 @@ const Home = () => {
               </SwiperSlide>
             </div>
           ))}
+
+         
         </div>
       </Swiper>
     </>

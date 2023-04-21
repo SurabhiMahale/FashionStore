@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "./Image";
 import Counter from "./counter";
-
+import axios from "axios";
 import { useCartContext } from "../context/cartContext";
 
 const Cart = () => {
@@ -23,12 +23,36 @@ const Cart = () => {
   const Checkout = (e) => {
     e.preventDefault();
     const data = products.map((item) => ({
-      item_id: item.item_id,
-      sales_channel_id: 2,
-      event_type: "purchase",
+      "item_id": item.item_id,
+      "sales_channel_id": 2,
+      "event_type": "purchase",
     }));
-    console.log(data);
+
+    const ProceedTransaction = async (data)=>{
+      
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "http://myproject.local:8000/users/transactions/create",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+        data:data,
+      };
+      const response = await axios.request(config);
+      console.log(response.data);
+    
+    }
+
+    data.map((d)=>{
+      ProceedTransaction(d);
+    })  
   };
+
+   
+
+  
 
   return (
     <>
