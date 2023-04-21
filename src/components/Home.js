@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
+
 import "../css/ProductCard.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -27,6 +28,7 @@ const Home = () => {
     console.log(cartItems);
     localStorage.setItem("items", JSON.stringify(cartItems));
   };
+
 
   useEffect(() => {
     const response = async () => {
@@ -81,9 +83,20 @@ const Home = () => {
     response();
   }, []);
 
+  const min = 150;
+  const max = 5000;
+
+  const RedirectToCart = (product)=>{
+   
+    setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, product]);
+    console.log(selectedProducts);
+    
+  }
   return (
     <>
+
       {/* Recommended for you */}
+
       <h3 className="font-weight-bold text-center mt-3 mb-3">
         Recommended For You
       </h3>
@@ -96,6 +109,7 @@ const Home = () => {
       >
         <div className="boxcont">
           {responseData1.map((transaction) => (
+
             <div key={transaction.transaction_id} className="">
               <SwiperSlide>
                 <div className="product-card mb-2 mx-lg-5 mx-md-5">
@@ -123,6 +137,7 @@ const Home = () => {
                   </button>
                 </div>
               </SwiperSlide>
+
             </div>
           ))}
         </div>
@@ -138,6 +153,7 @@ const Home = () => {
       >
         <div className="boxcont">
           {responseData2.map((transaction) => (
+
             <div key={transaction.transaction_id} className="">
               <SwiperSlide>
                 <div className="product-card mb-2 mx-lg-5 mx-md-5">
@@ -165,6 +181,7 @@ const Home = () => {
                   </button>
                 </div>
               </SwiperSlide>
+
             </div>
           ))}
         </div>
@@ -174,6 +191,7 @@ const Home = () => {
       <h3 className="font-weight-bold text-center mt-3 mb-3">
         Frequently bought Togther
       </h3>
+
       <Swiper
         spaceBetween={0}
         slidesPerView={3}
@@ -209,12 +227,15 @@ const Home = () => {
                   </button>
                 </div>
               </SwiperSlide>
+
             </div>
           ))}
 
          
         </div>
+
       </Swiper>
+
     </>
   );
 };

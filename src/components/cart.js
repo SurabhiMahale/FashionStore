@@ -3,7 +3,6 @@ import Image from "./Image";
 import Counter from "./counter";
 import axios from "axios";
 import { useCartContext } from "../context/cartContext";
-
 const Cart = () => {
   let products = JSON.parse(localStorage.getItem("items"));
   const totalPrice = products
@@ -143,6 +142,7 @@ const Cart = () => {
                 >
                   Proceed to Checkout
                 </button>
+
               </div>
             </div>
           </div>
