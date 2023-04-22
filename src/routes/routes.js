@@ -6,12 +6,6 @@ import NotFound from "../components/NotFound";
 import Cart from "../components/cart";
 import Transactions from "../components/transactions";
 import Register from "../components/Register";
-import Men from "../components/men";
-import Women from "../components/women";
-import Kids from "../components/kids";
-import Login from "../components/login";
-import Register from "../components/Register";
-
 
 const router = createBrowserRouter([
   {
@@ -40,26 +34,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register />,
-  },
-  {
-    path: "/category/men",
-    element: <Men />,
-  },
-  {
-    path: "/category/women",
-    element: <Women />,
-  },
-  {
-    path: "/category/kids",
-    element: <Kids />,
-  },
-  {
-    path: "/signin",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
     element: <Register />,
   },
 ]);
