@@ -82,7 +82,7 @@ const Login = () => {
                   <div className="mt-2 text-center">
                     Not a member yet ?
                     <Link
-                      to="/signup"
+                      to="/register"
                       className="text-decoration-none text-dark mx-2"
                     >
                       Sign up

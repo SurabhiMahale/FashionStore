@@ -1,5 +1,4 @@
 import useLocalStorageState from "use-local-storage-state";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { INITIAL_LOGIN_STATUS } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          FASHION <span className="text-warning">STORE</span>
+          FASHION <span className="text-danger">STORE</span>
         </a>
         <button
           className="navbar-toggler"
@@ -28,26 +27,33 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto justify-content-center">
+          <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              
-              <Link className="nav-link mx-lg-3" aria-current="page" to= "/category/men">Men</Link>
+              <a
+                className="nav-link active mx-lg-4"
+                aria-current="page"
+                href="#"
+              >
+                Men's
+              </a>
             </li>
 
             <li className="nav-item">
-            <Link className="nav-link mx-lg-3" aria-current="page" to= "/category/women">Women</Link>
+              <a className="nav-link mx-lg-3" aria-current="page" href="#">
+                Women
+              </a>
             </li>
 
             <li className="nav-item">
-            <Link className="nav-link mx-lg-3" aria-current="page" to= "/category/kids">Kids</Link>
+              <a className="nav-link mx-lg-3" href="#">
+                Kids
+              </a>
             </li>
 
             <li className="nav-item">
-            <Link className="nav-link mx-lg-3" aria-current="page" to= "/category/sports">Sports</Link>
-            </li>
-
-            <li className="nav-item">
-            <Link className="nav-link mx-lg-3" aria-current="page" to= "/Home">All</Link>
+              <a className="nav-link mx-lg-3" href="#">
+                Sport
+              </a>
             </li>
           </ul>
 
@@ -56,7 +62,7 @@ const Navbar = () => {
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/cart">
-                    
+                    Cart
                   </Link>
                 </li>
 
@@ -75,11 +81,15 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                <Link className="nav-link mx-lg-3" aria-current="page" to= "/signin">Sign In</Link>
+                  <a className="nav-link" href="#">
+                    Sign In
+                  </a>
                 </li>
 
                 <li className="nav-item">
-                <Link className="nav-link mx-lg-3" aria-current="page" to= "/signup">Sign Up</Link>
+                  <a className="nav-link" href="#">
+                    Sign up
+                  </a>
                 </li>
               </>
             )}

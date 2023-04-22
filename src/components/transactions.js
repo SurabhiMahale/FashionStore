@@ -34,12 +34,12 @@ const Transactions = () => {
   return (
     <>
       <h3 className="font-weight-bold text-center mt-3 mb-3">
-        Your Order History...
+        Your Transactions History...
       </h3>
-      <div className="boxcont mx-auto" style={{width: '80%'}}>
+      <div className="boxcont">
         {responseData.map((transaction) => (
           <div key={transaction.item_id} className="">
-            <div className="transaction-card mb-2">
+            <div className="product-card mb-2">
               <div
                 className="product-image"
                 style={{
@@ -54,7 +54,7 @@ const Transactions = () => {
                 Item Price: {transaction.price}
               </div>
               <div className="product-description">
-                Item Description: This is product
+                Item Description: This is pro
               </div>
             </div>
           </div>
