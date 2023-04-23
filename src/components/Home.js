@@ -129,7 +129,8 @@ const Home = () => {
                     Item Price:{transaction.price}
                   </div>
                   <div className="product-description">
-                    Item Description: This is pro
+                    Item Description:
+                    {transaction.description.toString().substr(0, 80)}
                   </div>
                   {loginStatus && loginStatus.status === "success" && (
                     <>

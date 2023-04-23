@@ -86,7 +86,8 @@ const Kids = () => {
                 Item Price: {transaction.price}
               </div>
               <div className="product-description">
-                Item Description: This is product
+                Item Description:
+                {transaction.description.toString().substr(0, 80)}
               </div>
               {loginStatus && loginStatus.status === "success" && (
                 <>

@@ -47,7 +47,6 @@ const Cart = () => {
         alert("You transactions done successfully");
         localStorage.removeItem("items");
         navigate("/transactions", { replace: true });
-        
       } else {
         alert("Cannot perform the transaction operation");
       }
@@ -86,7 +85,10 @@ const Cart = () => {
                       <div className="col-md-8">
                         <div className="row">
                           <div className="col">
-                            <p className="m-0">item_id: {item.item_id}</p>
+                            <p className="m-0">
+                              product name:
+                              {` ${item.product_name} `}
+                            </p>
                           </div>
                         </div>
 
@@ -94,14 +96,16 @@ const Cart = () => {
                           <div className="col">
                             <p className="m-0">
                               Price:
-                              {}
+                              {item.price}
                             </p>
                           </div>
                         </div>
 
                         <div className="row">
                           <div className="col">
-                            <p className="m-0">Description:{item.descrption}</p>
+                            <p className="m-0">
+                              Description:{item.description}
+                            </p>
                           </div>
                         </div>
 
