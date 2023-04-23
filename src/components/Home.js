@@ -100,9 +100,9 @@ const Home = () => {
     <>
       {/* Recommended for you */}
 
-      <h3 className="font-weight-bold text-center mt-3 mb-3">
-        Recommended For You
-      </h3>
+      <h5 className="font-weight-bold text-center mt-3 mb-3">
+        RECOMMENDED FOR YOU
+      </h5>
 
       <Swiper
         spaceBetween={0}
@@ -149,7 +149,7 @@ const Home = () => {
       </Swiper>
 
       {/* Best Seller */}
-      <h3 className="font-weight-bold text-center mt-3 mb-3">Bestseller</h3>
+      <h5 className="font-weight-bold text-center mt-3 mb-3">BESTSELLER</h5>
       <Swiper
         spaceBetween={0}
         slidesPerView={4}
@@ -195,9 +195,9 @@ const Home = () => {
       </Swiper>
 
       {/* Frequently bought Together */}
-      <h3 className="font-weight-bold text-center mt-3 mb-3">
-        Frequently bought Togther
-      </h3>
+      <h5 className="font-weight-bold text-center mt-3 mb-3">
+        FREQUENTLY BOUGHT TOGETHER
+      </h5>
 
       <Swiper
         spaceBetween={0}

@@ -75,7 +75,7 @@ const Navbar = () => {
                   aria-current="page"
                   to="/Home"
                 >
-                  All
+                  For You
                 </Link>
               </li>
             )}
