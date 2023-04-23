@@ -24,3 +24,7 @@ yarn-error.log*
 
 /src/Constants/*.js
 /fashion-recommendation-system
+/FashionRecommendationSystem
+/fashiobackend
+/env
+/enviornment.txt

@@ -1,34 +1,47 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "../css/ProductCard.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useLoginContext } from "../context/loginContext";
 
 const Home = () => {
+  const { loginStatus } = useLoginContext();
   const [responseData1, setResponseData1] = useState([]);
   const [responseData2, setResponseData2] = useState([]);
   const [responseData3, setResponseData3] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(
+    localStorage.getItem("items") || []
+  );
   let isResSet = false;
 
-
   const RedirectToCart = (product) => {
-    setCartItems((prevCartItems) => {
-      const itemExists = prevCartItems.find(
-        (item) => item.item_id === product.item_id
-      );
-      if (itemExists) {
-        return prevCartItems; // Return the previous cart items array
-      } else {
-        alert(`${itemExists.item_id} is successfully added to the cart`);
-        return [...prevCartItems,product]; // Return a new array with the new product added
+    if (cartItems.length === 0) {
+      setCartItems([product]);
+    } else {
+      if (Array.isArray(cartItems)) {
+        cartItems.filter((p) => {
+          const itemExists = p.item_id === product.item_id;
+          if (!itemExists) {
+            setCartItems([...cartItems, product]);
+          }
+          console.log(`${product.item_id} added successfully`);
+        });
       }
-    });
-    console.log(cartItems);
-    localStorage.setItem("items", JSON.stringify(cartItems));
+    }
   };
 
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (Array.isArray(items)) {
+      setCartItems(items);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   useEffect(() => {
     const response = async () => {
@@ -48,7 +61,7 @@ const Home = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true
+        withCredentials: true,
       };
 
       let config3 = {
@@ -70,10 +83,10 @@ const Home = () => {
         console.log(response2.data);
         const response3 = await axios.request(config3);
         if (response3.data !== "None") {
-          isResSet = true
+          isResSet = true;
           setResponseData3(response3.data);
         }
-        
+
         console.log(response3.data);
       } catch (error) {
         console.log(error);
@@ -83,18 +96,8 @@ const Home = () => {
     response();
   }, []);
 
-  const min = 150;
-  const max = 5000;
-
-  const RedirectToCart = (product)=>{
-   
-    setSelectedProducts((prevSelectedProducts) => [...prevSelectedProducts, product]);
-    console.log(selectedProducts);
-    
-  }
   return (
     <>
-
       {/* Recommended for you */}
 
       <h3 className="font-weight-bold text-center mt-3 mb-3">
@@ -103,13 +106,12 @@ const Home = () => {
 
       <Swiper
         spaceBetween={0}
-        slidesPerView={3}
+        slidesPerView={4}
         onSlideChange={() => {}}
         onSwiper={() => {}}
       >
         <div className="boxcont">
           {responseData1.map((transaction) => (
-
             <div key={transaction.transaction_id} className="">
               <SwiperSlide>
                 <div className="product-card mb-2 mx-lg-5 mx-md-5">
@@ -129,15 +131,18 @@ const Home = () => {
                   <div className="product-description">
                     Item Description: This is pro
                   </div>
-                  <button
-                    className="add-to-cart-button"
-                    onClick={() => RedirectToCart(transaction)}
-                  >
-                    Add to Cart
-                  </button>
+                  {loginStatus && loginStatus.status === "success" && (
+                    <>
+                      <button
+                        className="add-to-cart-button"
+                        onClick={() => RedirectToCart(transaction)}
+                      >
+                        Add to Cart
+                      </button>
+                    </>
+                  )}
                 </div>
               </SwiperSlide>
-
             </div>
           ))}
         </div>
@@ -147,13 +152,12 @@ const Home = () => {
       <h3 className="font-weight-bold text-center mt-3 mb-3">Bestseller</h3>
       <Swiper
         spaceBetween={0}
-        slidesPerView={3}
+        slidesPerView={4}
         onSlideChange={() => {}}
         onSwiper={() => {}}
       >
         <div className="boxcont">
           {responseData2.map((transaction) => (
-
             <div key={transaction.transaction_id} className="">
               <SwiperSlide>
                 <div className="product-card mb-2 mx-lg-5 mx-md-5">
@@ -173,15 +177,18 @@ const Home = () => {
                   <div className="product-description">
                     Item Description: This is pro
                   </div>
-                  <button
-                    className="add-to-cart-button"
-                    onClick={() => RedirectToCart(transaction)}
-                  >
-                    Add to Cart
-                  </button>
+                  {loginStatus && loginStatus.status === "success" && (
+                    <>
+                      <button
+                        className="add-to-cart-button"
+                        onClick={() => RedirectToCart(transaction)}
+                      >
+                        Add to Cart
+                      </button>
+                    </>
+                  )}
                 </div>
               </SwiperSlide>
-
             </div>
           ))}
         </div>
@@ -194,12 +201,12 @@ const Home = () => {
 
       <Swiper
         spaceBetween={0}
-        slidesPerView={3}
+        slidesPerView={4}
         onSlideChange={() => {}}
         onSwiper={() => {}}
       >
         <div className="boxcont">
-          { responseData3.map((transaction) => (
+          {responseData3.map((transaction) => (
             <div key={transaction.item_id} className="">
               <SwiperSlide>
                 <div className="product-card  mb-2 mx-lg-5 mx-md-5">
@@ -219,23 +226,22 @@ const Home = () => {
                   <div className="product-description">
                     Item Description: This is pro
                   </div>
-                  <button
-                    className="add-to-cart-button"
-                    onClick={() => RedirectToCart(transaction)}
-                  >
-                    Add to Cart
-                  </button>
+                  {loginStatus && loginStatus.status === "success" && (
+                    <>
+                      <button
+                        className="add-to-cart-button"
+                        onClick={() => RedirectToCart(transaction)}
+                      >
+                        Add to Cart
+                      </button>
+                    </>
+                  )}
                 </div>
               </SwiperSlide>
-
             </div>
           ))}
-
-         
         </div>
-
       </Swiper>
-
     </>
   );
 };
