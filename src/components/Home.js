@@ -126,10 +126,11 @@ const Home = () => {
                     }}
                   ></div>
                   <div className="product-price">
-                    Item Price:{transaction.price}
+                    Item Price: Rs.{transaction.price}
                   </div>
                   <div className="product-description">
-                    Item Description: This is pro
+                    Item Description:
+                    {transaction.description.toString().substr(0, 80)}
                   </div>
                   {loginStatus && loginStatus.status === "success" && (
                     <>
@@ -172,10 +173,10 @@ const Home = () => {
                     }}
                   ></div>
                   <div className="product-price">
-                    Item Price:{transaction.price}
+                    Item Price: Rs.{transaction.price}
                   </div>
                   <div className="product-description">
-                    Item Description: This is pro
+                    Item Description: Rs.{transaction.description.toString().substr(0, 80)}
                   </div>
                   {loginStatus && loginStatus.status === "success" && (
                     <>
@@ -221,10 +222,10 @@ const Home = () => {
                     }}
                   ></div>
                   <div className="product-price">
-                    Item Price: {transaction.price}
+                    Item Price: Rs.{transaction.price}
                   </div>
                   <div className="product-description">
-                    Item Description: This is pro
+                    Item Description: {transaction.description.toString().substr(0, 80)}
                   </div>
                   {loginStatus && loginStatus.status === "success" && (
                     <>

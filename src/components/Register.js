@@ -113,25 +113,7 @@ const Register = () => {
                     </div>
                   </div>
 
-                  <hr className="mt-5" />
-                  <div className="mt-2 text-center">
-                    Not a member yet ?
-                    <Link
-                      to="/register"
-                      className="text-decoration-none text-dark mx-2"
-                    >
-                      Sign up
-                    </Link>
-                  </div>
-
-                  <div className="mt-3 text-center">
-                    <Link
-                      to="#"
-                      className="text-decoration-none text-dark mx-2"
-                    >
-                      Forgot Password
-                    </Link>
-                  </div>
+                 
 
                   <div className="mt-3 mb-3">
                     <div className="form-group">
