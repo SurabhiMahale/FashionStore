@@ -2,7 +2,10 @@ import React from "react";
 import Image from "./Image";
 import axios from "axios";
 import { useCartContext } from "../context/cartContext";
+import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
+  const navigate = useNavigate();
   let products = JSON.parse(localStorage.getItem("items"));
   const totalPrice = products
     ? products.reduce((accumulator, item) => accumulator + item.price, 0)
@@ -15,7 +18,6 @@ const Cart = () => {
       (item) => item.item_id !== productId
     );
     getProducts(filterProducts);
-    
   };
 
   const Checkout = (e) => {
@@ -39,6 +41,16 @@ const Cart = () => {
       };
       const response = await axios.request(config);
       console.log(response.data);
+
+      const { status } = response.data;
+      if (status === "success") {
+        alert("You transactions done successfully");
+        localStorage.removeItem("items");
+        navigate("/transactions", { replace: true });
+      } else {
+        alert("Cannot perform the transaction operation");
+      }
+      console.log(status);
     };
 
     data.map((d) => {
@@ -73,7 +85,10 @@ const Cart = () => {
                       <div className="col-md-8">
                         <div className="row">
                           <div className="col">
-                            <p className="m-0">item_id: {item.item_id}</p>
+                            <p className="m-0">
+                              product name:
+                              {` ${item.product_name} `}
+                            </p>
                           </div>
                         </div>
 
@@ -81,14 +96,16 @@ const Cart = () => {
                           <div className="col">
                             <p className="m-0">
                               Price:
-                              {}
+                              {item.price}
                             </p>
                           </div>
                         </div>
 
                         <div className="row">
                           <div className="col">
-                            <p className="m-0">Description:{item.descrption}</p>
+                            <p className="m-0">
+                              Description:{item.description}
+                            </p>
                           </div>
                         </div>
 
@@ -125,8 +142,8 @@ const Cart = () => {
                     products ? products.length : 0
                   } items ) in your cart`}
                 </h5>
-                <h6 className="font-weight-bold">{`Total Price: ${
-                  totalPrice === null ? 0 : totalPrice
+                <h6 className="font-weight-bold">{`Total Price: Rs. ${
+                  totalPrice === null ? 0 : totalPrice 
                 }`}</h6>
 
                 <button

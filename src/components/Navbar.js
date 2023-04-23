@@ -1,5 +1,4 @@
 import useLocalStorageState from "use-local-storage-state";
-// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { INITIAL_LOGIN_STATUS } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -13,9 +12,22 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          FASHION <span className="text-warning">STORE</span>
-        </a>
+        {loginStatus && loginStatus.status === "success" && (
+          <>
+            <Link className="navbar-brand" to="/home">
+              FASHION <span className="text-warning">STORE</span>
+            </Link>
+          </>
+        )}
+
+        {!loginStatus && (
+          <>
+            <Link className="navbar-brand" to="/signin">
+              FASHION <span className="text-warning">STORE</span>
+            </Link>
+          </>
+        )}
+
         <button
           className="navbar-toggler"
           type="button"
@@ -75,7 +87,7 @@ const Navbar = () => {
                   aria-current="page"
                   to="/Home"
                 >
-                  All
+                  For You
                 </Link>
               </li>
             )}

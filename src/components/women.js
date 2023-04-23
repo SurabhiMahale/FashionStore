@@ -20,10 +20,10 @@ const Women = () => {
           if (!itemExists) {
             setCartItems([...cartItems, product]);
           }
-          console.log(`${product.item_id} added successfully`);
         });
       }
     }
+    alert(`${product.item_id} added successfully`);
   };
 
   useEffect(() => {
@@ -83,10 +83,11 @@ const Women = () => {
                 }}
               ></div>
               <div className="product-price">
-                Item Price: {transaction.price}
+                Item Price: Rs.{transaction.price}
               </div>
               <div className="product-description">
-                Item Description: This is product
+                Item Description:
+                {transaction.description.toString().substr(0, 80)}
               </div>
               {loginStatus && loginStatus.status === "success" && (
                 <>
