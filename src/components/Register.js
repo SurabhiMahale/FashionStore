@@ -31,7 +31,7 @@ const Register = () => {
       try {
         const response = await axios.request(config);
         if (response.data.status === "success") {
-          navigate("/login", { replace: true });
+          navigate("/signin", { replace: true });
         }
       } catch (error) {
         console.log(error);

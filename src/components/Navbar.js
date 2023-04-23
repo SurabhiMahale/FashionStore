@@ -1,4 +1,5 @@
 import useLocalStorageState from "use-local-storage-state";
+// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { INITIAL_LOGIN_STATUS } from "../constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -13,7 +14,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          FASHION <span className="text-danger">STORE</span>
+          FASHION <span className="text-warning">STORE</span>
         </a>
         <button
           className="navbar-toggler"
@@ -27,34 +28,57 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto">
+          <ul className="navbar-nav mx-auto justify-content-center">
             <li className="nav-item">
-              <a
-                className="nav-link active mx-lg-4"
+              <Link
+                className="nav-link mx-lg-3"
                 aria-current="page"
-                href="#"
+                to="/category/men"
               >
-                Men's
-              </a>
+                Men
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link mx-lg-3" aria-current="page" href="#">
+              <Link
+                className="nav-link mx-lg-3"
+                aria-current="page"
+                to="/category/women"
+              >
                 Women
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link mx-lg-3" href="#">
+              <Link
+                className="nav-link mx-lg-3"
+                aria-current="page"
+                to="/category/kids"
+              >
                 Kids
-              </a>
+              </Link>
             </li>
 
             <li className="nav-item">
-              <a className="nav-link mx-lg-3" href="#">
-                Sport
-              </a>
+              <Link
+                className="nav-link mx-lg-3"
+                aria-current="page"
+                to="/category/sports"
+              >
+                Sports
+              </Link>
             </li>
+            {loginStatus && loginStatus.status === "success" && (
+              <li className="nav-item">
+                <Link
+                  className="nav-link mx-lg-3"
+                  aria-current="page"
+                  to="/Home"
+                >
+                  All
+                </Link>
+              </li>
+            )}
           </ul>
 
           <ul className="navbar-nav ms-auto">
@@ -71,7 +95,7 @@ const Navbar = () => {
                     className="btn btn-warning"
                     onClick={() => {
                       setLoginStatus(null);
-                      navigate("/login", { replace: true });
+                      navigate("/signin", { replace: true });
                     }}
                   >
                     Logout
@@ -81,15 +105,23 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <Link
+                    className="nav-link mx-lg-3"
+                    aria-current="page"
+                    to="/signin"
+                  >
                     Sign In
-                  </a>
+                  </Link>
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Sign up
-                  </a>
+                  <Link
+                    className="nav-link mx-lg-3"
+                    aria-current="page"
+                    to="/signup"
+                  >
+                    Sign Up
+                  </Link>
                 </li>
               </>
             )}
