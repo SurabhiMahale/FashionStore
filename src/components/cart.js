@@ -2,7 +2,10 @@ import React from "react";
 import Image from "./Image";
 import axios from "axios";
 import { useCartContext } from "../context/cartContext";
+import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
+  const navigate = useNavigate();
   let products = JSON.parse(localStorage.getItem("items"));
   const totalPrice = products
     ? products.reduce((accumulator, item) => accumulator + item.price, 0)
@@ -15,7 +18,6 @@ const Cart = () => {
       (item) => item.item_id !== productId
     );
     getProducts(filterProducts);
-    
   };
 
   const Checkout = (e) => {
@@ -39,6 +41,17 @@ const Cart = () => {
       };
       const response = await axios.request(config);
       console.log(response.data);
+
+      const { status } = response.data;
+      if (status === "success") {
+        alert("You transactions done successfully");
+        localStorage.removeItem("items");
+        navigate("/transactions", { replace: true });
+        
+      } else {
+        alert("Cannot perform the transaction operation");
+      }
+      console.log(status);
     };
 
     data.map((d) => {

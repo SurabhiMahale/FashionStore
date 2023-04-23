@@ -20,10 +20,10 @@ const Men = () => {
           if (!itemExists) {
             setCartItems([...cartItems, product]);
           }
-          console.log(`${product.item_id} added successfully`);
         });
       }
     }
+    alert(`${product.item_id} added successfully`);
   };
 
   useEffect(() => {
