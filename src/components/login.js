@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginContext } from "../context/loginContext";
+import "../css/ProductCard.css";
 
 const Login = () => {
   const { loginStatus, login } = useLoginContext();
@@ -8,6 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState("");
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +34,7 @@ const Login = () => {
       <div className=" col-sm-4 col-md-5 col-lg-4 mx-auto">
         <form action="" onSubmit={onFormSubmit}>
           <div
-            className="card mt-5"
+            className="card mt-4"
             style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
           >
             <div className="card-body">
@@ -40,7 +42,7 @@ const Login = () => {
               <div className="row">
                 <div className="col">
                   <center>
-                    <h2>USER SIGN IN</h2>
+                    <h2>SIGN IN</h2>
                   </center>
                 </div>
               </div>
@@ -55,10 +57,11 @@ const Login = () => {
                     <div className="form-group">
                       <input
                         className="form-control"
-                        type="text"
+                        type="email"
                         id="email"
                         placeholder="Enter the Email ID"
                         value={email}
+                        autocomplete="off"
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
@@ -72,12 +75,21 @@ const Login = () => {
                     <div className="form-group">
                       <input
                         className="form-control"
-                        type="text"
+                        type={showPassword ? "text" : "password"} // toggle type based on showPassword state
                         id="password"
                         placeholder="Enter the Password"
+                        autoComplete="off"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                      />
+                      /><br/>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={showPassword}
+                          onChange={(e) => setShowPassword(e.target.checked)}
+                        />
+                        Show Password
+                      </label>
                     </div>
                   </div>
 
@@ -92,18 +104,11 @@ const Login = () => {
                     </Link>
                   </div>
 
-                  <div className="mt-3 text-center">
-                    <Link
-                      to="#"
-                      className="text-decoration-none text-dark mx-2"
-                    >
-                      Forgot Password
-                    </Link>
-                  </div>
+                 
 
                   <div className="mt-3 mb-3">
                     <div className="form-group">
-                      <button className="form-control btn btn-success text-center">
+                      <button className="form-control btn text-center btn-warning">
                         Sign In
                       </button>
                     </div>

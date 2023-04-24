@@ -1,3 +1,5 @@
+
+/* Product Card CSS start */
 .product-card {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -32,7 +34,7 @@
     font-size: 20px;
     font-weight: 600;
     margin: 10px 0;
-    color: #b12704;
+    color: #171616;
   }
   
   .product-description {
@@ -75,3 +77,8 @@
       margin-right: 10%;
   }
 
+/* Product card css ends */
+
+/* Login CSS Start */
+
+/* Login CSS ends */

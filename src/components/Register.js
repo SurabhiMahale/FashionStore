@@ -10,6 +10,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState("");
 
   const Register = async (e) => {
     e.preventDefault();
@@ -46,7 +47,7 @@ const Register = () => {
       <div className=" col-sm-4 col-md-5 col-lg-4 mx-auto">
         <form action=" " onSubmit={Register}>
           <div
-            className="card mt-3"
+            className="card mt-4"
             style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
           >
             <div className="card-body">
@@ -54,7 +55,7 @@ const Register = () => {
               <div className="row">
                 <div className="col">
                   <center>
-                    <h2>USER SIGN UP</h2>
+                    <h2>SIGN UP</h2>
                   </center>
                 </div>
               </div>
@@ -69,7 +70,7 @@ const Register = () => {
                     <div className="form-group">
                       <input
                         className="form-control"
-                        type="text"
+                        type="email"
                         id="email"
                         placeholder="Enter the Email ID"
                         value={email}
@@ -86,12 +87,14 @@ const Register = () => {
                     <div className="form-group">
                       <input
                         className="form-control"
-                        type="text"
+                        type={showPassword ? "text" : "password"}
                         id="password"
                         placeholder="Enter the Password"
+                        autocomplete="off" 
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                       />
+                      
                     </div>
                   </div>
 
@@ -104,12 +107,21 @@ const Register = () => {
                     <div className="form-group">
                       <input
                         className="form-control"
-                        type="text"
+                        type={showPassword ? "text" : "password"}
                         id="confirmPassword"
                         placeholder="Enter the Confirm Password"
+                        autocomplete="off" 
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                      />
+                      /><br/>
+                      <label>
+                        <input
+                          type="checkbox"
+                          checked={showPassword}
+                          onChange={(e) => setShowPassword(e.target.checked)}
+                        />
+                        Show Password
+                      </label>                      
                     </div>
                   </div>
 
@@ -117,7 +129,7 @@ const Register = () => {
 
                   <div className="mt-3 mb-3">
                     <div className="form-group">
-                      <button className="form-control btn btn-success text-center">
+                      <button className="form-control btn btn-warning text-center">
                         Sign Up
                       </button>
                     </div>

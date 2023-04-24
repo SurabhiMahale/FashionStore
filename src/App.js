@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "../src/components/Navbar";
+import Footer from "../src/components/Footer";
 import LoginProvider from "./context/loginContext";
 import Login from "../src/components/login";
 import UserInfo from "../src/components/userInfo";
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/category/kids" element={<Kids />} />
             <Route path="/category/sports" element={<Sports />} />
           </Routes>
+          <Footer/>
         </LoginProvider>
       </CartProvider>
     </BrowserRouter>

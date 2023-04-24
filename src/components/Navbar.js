@@ -40,10 +40,10 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto justify-content-center">
-            <li className="nav-item">
+          <ul className="navbar-nav mx-auto justify-content-center " style={{ paddingLeft: "140px" }}>
+            <li className="nav-item" >
               <Link
-                className="nav-link mx-lg-3"
+                className="nav-link mx-lg-4"
                 aria-current="page"
                 to="/category/men"
               >
@@ -53,7 +53,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <Link
-                className="nav-link mx-lg-3"
+                className="nav-link mx-lg-4"
                 aria-current="page"
                 to="/category/women"
               >
@@ -63,7 +63,7 @@ const Navbar = () => {
 
             <li className="nav-item">
               <Link
-                className="nav-link mx-lg-3"
+                className="nav-link mx-lg-4"
                 aria-current="page"
                 to="/category/kids"
               >
@@ -73,32 +73,28 @@ const Navbar = () => {
 
             <li className="nav-item">
               <Link
-                className="nav-link mx-lg-3"
+                className="nav-link mx-lg-4"
                 aria-current="page"
                 to="/category/sports"
               >
                 Sports
               </Link>
             </li>
-            {loginStatus && loginStatus.status === "success" && (
-              <li className="nav-item">
-                <Link
-                  className="nav-link mx-lg-3"
-                  aria-current="page"
-                  to="/Home"
-                >
-                  For You
-                </Link>
-              </li>
-            )}
+            
           </ul>
 
           <ul className="navbar-nav ms-auto">
             {loginStatus !== null && loginStatus.status === "success" ? (
               <>
-                <li className="nav-item">
+                <li className="nav-item" >
                   <Link className="nav-link" to="/cart">
                     Cart
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/Transactions">
+                    Orders
                   </Link>
                 </li>
 

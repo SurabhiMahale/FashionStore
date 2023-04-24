@@ -1,0 +1,27 @@
+.FooterClass {
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+  }
+
+footer {
+  display: block;
+  text-align: center;
+  margin-bottom: 0px;
+  padding: 3px;
+  background-color: #212529;;
+  color: rgb(104, 104, 104);
+}
+.notice {
+  display: block;
+  font-size: small;
+  text-align: center;
+  height: fit-content;
+  width: 670px;
+  margin: auto;
+}
+.footerLink {
+  text-decoration: none;
+  color: rgb(64, 67, 67);
+  font-size: smaller;
+}

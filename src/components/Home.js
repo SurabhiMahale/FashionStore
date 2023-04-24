@@ -48,7 +48,7 @@ const Home = () => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://myproject.local:8000/recommend/foryou",
+        url: "http://myproject.local:8000/recommend/best",
         headers: {
           "Content-Type": "application/json",
         },
