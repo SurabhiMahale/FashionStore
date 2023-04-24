@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import "../css/ProductCard.css";
+import CustomCarousel from "./Banner";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useLoginContext } from "../context/loginContext";
+import Login from "./login";
 
 const Home = () => {
   const { loginStatus } = useLoginContext();
@@ -96,8 +98,9 @@ const Home = () => {
     response();
   }, []);
 
-  return (
+  return loginStatus && loginStatus.status === "success" ?(
     <>
+    <CustomCarousel/>
       {/* Recommended for you */}
 
       <h5 className="font-weight-bold text-center mt-3 mb-3">
@@ -244,6 +247,8 @@ const Home = () => {
         </div>
       </Swiper>
     </>
+  ):(
+    <Login/>
   );
 };
 
