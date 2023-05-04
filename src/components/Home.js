@@ -50,7 +50,7 @@ const Home = () => {
       let config = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://myproject.local:8000/recommend/best",
+        url: "http://myproject.local:8000/recommend/freq",
         headers: {
           "Content-Type": "application/json",
         },
@@ -69,7 +69,7 @@ const Home = () => {
       let config3 = {
         method: "post",
         maxBodyLength: Infinity,
-        url: "http://myproject.local:8000/recommend/freq",
+        url: "http://myproject.local:8000/recommend/foryou",
         headers: {
           "Content-Type": "application/json",
         },
